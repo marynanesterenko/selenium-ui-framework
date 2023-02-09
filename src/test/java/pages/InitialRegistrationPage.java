@@ -4,8 +4,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 
-import java.text.AttributedCharacterIterator;
-
 public class InitialRegistrationPage extends BasePage {
 
     @FindBy(id = "title")
@@ -49,8 +47,8 @@ public class InitialRegistrationPage extends BasePage {
         lastNameInput.sendKeys("Simpson");
         genderRadioButton.click();
         dobInput.sendKeys("08/08/1995");
-        ssnInput.sendKeys("569-85-4589");
-        emailAddressInput.sendKeys("test.email@email.com");
+        ssnInput.sendKeys("879-58-9623");
+        emailAddressInput.sendKeys("test_email@email.com");
         passwordInput.sendKeys("Welcome@!12");
         confirmPasswordInput.sendKeys("Welcome@!12");
     }
