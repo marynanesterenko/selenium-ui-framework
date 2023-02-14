@@ -6,7 +6,6 @@ import utilities.ConfigReader;
 
 public class LoginPage extends BasePage{
 
-
     @FindBy(id = "username")
     WebElement usernameInput;
 
@@ -17,7 +16,7 @@ public class LoginPage extends BasePage{
     WebElement submitBtn;
 
     // in this method we are hardcoding, we don't really need this method
-    // BUT
+    // BUT if we want to run our test with "safe" data, we can use this method
     public void enterValidLoginInfo(){
         usernameInput.sendKeys("lessi.ww115@gmail.com");
         passwordInput.sendKeys("Wasserhund@1995");
@@ -29,7 +28,22 @@ public class LoginPage extends BasePage{
         passwordInput.sendKeys(ConfigReader.getConfigProperty(password));
     }
 
+    public void enterInvalidLoginInfo(String username, String password){
+        usernameInput.sendKeys(ConfigReader.getConfigProperty(username));
+        passwordInput.sendKeys(ConfigReader.getConfigProperty(password));
+    }
+
     public void clickSignInBtn(){
         submitBtn.click();
+    }
+
+    @FindBy (id = "remember-me")
+    WebElement rememberMeBtn;
+    public void enableRememberMeBtn(){
+        rememberMeBtn.click();
+    }
+
+    public void navigateBackToLogin(){
+        driver.navigate().back();
     }
 }

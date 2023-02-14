@@ -7,6 +7,7 @@ public class ConfigReader {
     // Properties class is created to handle properties files (config.properties)
     public static Properties properties;
 
+
     public static void initializeProperties(){
 
         try {
@@ -20,7 +21,6 @@ public class ConfigReader {
             // here we are using the .load(fileReader) method in order to pass the file reader to the Properties Object
             properties.load(fileReader);
         } catch (Exception e){
-
             // here we are just printing the exception stack trace if there is one caught
             e.printStackTrace();
         }
