@@ -16,11 +16,4 @@ public class SignUpPage extends BasePage{
     public void clickOnSignUpLink(){
         signUpLink.click();
     }
-
-
-
-
-
-
-
 }

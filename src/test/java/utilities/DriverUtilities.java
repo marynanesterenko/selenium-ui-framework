@@ -1,5 +1,6 @@
 package utilities;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -10,15 +11,17 @@ public class DriverUtilities {
     static WebDriver driver;
 
     public static void createDriver(){
-        System.setProperty("webdriver.chrome.driver", "src/test/resources/drivers/chromedriver.exe");
+        // WebDriverManager essentially removes the need to manually manage any drivers
+        // (meaning to set property for each driver, download the .exe files)
+        WebDriverManager.chromedriver().setup();
 
         driver = new ChromeDriver();
 
-        driver.manage().window().minimize();
+        driver.manage().window().maximize();
 
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
 
-        driver.get("http://18.116.88.132:8080/bank/login");
+        driver.get(ConfigReader.getConfigProperty("app.baseurl"));
     }
 
     public static WebDriver getDriver(){

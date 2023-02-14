@@ -14,8 +14,7 @@ public class LoginSteps {
 
     @Given("user enters valid username and password")
     public void user_enters_valid_username_and_password() {
-        loginPage.enterValidLoginInfo();
-        
+        loginPage.enterValidLoginInfo("valid.username", "valid.password");
     }
 
     @When("user clicks on Sign In button")
