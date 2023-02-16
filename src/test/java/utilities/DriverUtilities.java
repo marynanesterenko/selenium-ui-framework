@@ -1,6 +1,7 @@
 package utilities;
 
 import io.cucumber.java.Scenario;
+import io.cucumber.java.et.Ja;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.MutableCapabilities;
@@ -59,13 +60,11 @@ public class DriverUtilities {
             capabilities.setCapability("browserVersion", ConfigReader.getConfigProperty("sauce.browserVersion"));
             capabilities.setCapability("platformName", ConfigReader.getConfigProperty("sauce.platformName"));
             capabilities.setCapability("sauce:options", sauceOptions);
-            capabilities.setCapability("name", scenario.getName());
-
 
             try {
                 // here we are initializing the WebDriver to a Remote driver and passing the URL to the Selenium Grid hub
             driver = new RemoteWebDriver(new URL(ConfigReader.getConfigProperty("sauce.urlWest")), capabilities);
-                ((JavascriptExecutor)driver).executeScript("sauce:job-name" + scenario.getName());
+                ((JavascriptExecutor)driver).executeScript("sauce:job-name=" + scenario.getName());
             } catch (Exception e){
                 e.printStackTrace();
             }
@@ -73,6 +72,20 @@ public class DriverUtilities {
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
         driver.get(ConfigReader.getConfigProperty("app.baseurl"));
+    }
+
+    public static void quitDriver(Scenario scenario){
+        if (ConfigReader.getConfigProperty("app.host").equalsIgnoreCase("saucelabs")){
+            // ((JavascriptExecutor)driver).executeScript("sauce:job-result=" + (scenario.isFailed() ? "failed" : "passed"));
+            // Condition ? True : false
+            if (scenario.isFailed()){
+                ((JavascriptExecutor)driver).executeScript("sauce:job-result=failed");
+            } else {
+                ((JavascriptExecutor)driver).executeScript("sauce:job-result=passed");
+            }
+        }
+
+        driver.quit();
     }
 
     public static WebDriver getDriver(){
