@@ -23,9 +23,9 @@ public class LoginPage extends BasePage{
     }
 
     // this method is more flexible, since we can pass the parameters here
-    public void enterValidLoginInfo(String username, String password){
-        usernameInput.sendKeys(ConfigReader.getConfigProperty(username));
-        passwordInput.sendKeys(ConfigReader.getConfigProperty(password));
+    public void enterValidLoginInfo(String validUsername, String validPassword){
+        usernameInput.sendKeys(ConfigReader.getConfigProperty(validUsername));
+        passwordInput.sendKeys(ConfigReader.getConfigProperty(validPassword));
     }
 
     public void enterInvalidLoginInfo(String username, String password){
@@ -41,9 +41,5 @@ public class LoginPage extends BasePage{
     WebElement rememberMeBtn;
     public void enableRememberMeBtn(){
         rememberMeBtn.click();
-    }
-
-    public void navigateBackToLogin(){
-        driver.navigate().back();
     }
 }

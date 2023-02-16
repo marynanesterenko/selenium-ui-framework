@@ -1,10 +1,12 @@
 package pages;
 
+import com.github.javafaker.Faker;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import utilities.DriverUtilities;
 
 public class BasePage {
+    Faker faker = new Faker();
     WebDriver driver = DriverUtilities.getDriver();
 
     // this is a Class which makes the POM easier and more proficient to implement

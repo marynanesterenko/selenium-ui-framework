@@ -13,8 +13,8 @@ public class LoginSteps {
     HomePage homePage = new HomePage();
 
     @Given("user enters valid {string} and {string}")
-    public void user_enters_valid_username_and_password(String username, String password) {
-        loginPage.enterValidLoginInfo(username, password);
+    public void user_enters_valid_username_and_password(String validUsername, String validPassword) {
+        loginPage.enterValidLoginInfo(validUsername, validPassword);
     }
 
     @When("user clicks on Sign In button")
@@ -29,18 +29,12 @@ public class LoginSteps {
 
     @Given("user enters invalid {string} and {string}")
     public void user_enters_invalid_username_and_password(String username, String password) {
-        loginPage.enterValidLoginInfo(username, password);
+        loginPage.enterInvalidLoginInfo(username, password);
     }
 
     @Then("verify invalid login error message is displayed")
     public void verify_invalid_login_error_message_is_displayed(String username, String password) {
-        loginPage.enterValidLoginInfo(username, password);
-        loginPage.clickSignInBtn();
-    }
 
-    @Given("user enters {string} and {string}")
-    public void given_user_enters_valid_and(String string, String string2) {
-        
     }
 
     @When("user enables remember me checkbox")
@@ -50,7 +44,8 @@ public class LoginSteps {
 
     @When("user clicks Sign In button and navigates back to the Login Page")
     public void clicks_sign_in_button_and_navigates_back_to_the_login_page() {
-        
+        loginPage.clickSignInBtn();
+        homePage.navigateBackToLogin();
     }
 
 }
