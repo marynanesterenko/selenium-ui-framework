@@ -2,16 +2,17 @@ package stepdefs;
 
 import io.cucumber.java.Before;
 import io.cucumber.java.After;
+import io.cucumber.java.Scenario;
 import utilities.ConfigReader;
 import utilities.DriverUtilities;
 
 public class Hooks {
     @Before
-    public void setUp(){
+    //We are adding the cucumber scenario parameter which will hold the data for the scenario which is currently running
+    public void setUp(Scenario scenario){
         // here are initializing the properties Object inside the ConfigReader Class we created
         ConfigReader.initializeProperties();
-
-        DriverUtilities.createDriver();
+        DriverUtilities.createDriver(scenario);
     }
 
     @After

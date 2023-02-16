@@ -1,6 +1,8 @@
 package utilities;
 
+import io.cucumber.java.Scenario;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -16,7 +18,7 @@ public class DriverUtilities {
 
     static WebDriver driver;
 
-    public static void createDriver(){
+    public static void createDriver(Scenario scenario){
         // our PC is local host, SauceLabs - is a remote host
         // set up an if st to determine what app.host is
         if(ConfigReader.getConfigProperty("app.host").equalsIgnoreCase("local.host")) {
@@ -44,7 +46,7 @@ public class DriverUtilities {
                     }
                 }
             }
-            // else if the value of the app.host is SauceLabs, we are setting up a remote driver to run test on SauceLabs
+        // else if the value of the app.host is SauceLabs, we are setting up a remote driver to run test on SauceLabs
         } else if (ConfigReader.getConfigProperty("app.host").equalsIgnoreCase("saucelabs")){
             // capabilities - options we can pass to our driver
             // we created this Obj to save our username
@@ -57,10 +59,13 @@ public class DriverUtilities {
             capabilities.setCapability("browserVersion", ConfigReader.getConfigProperty("sauce.browserVersion"));
             capabilities.setCapability("platformName", ConfigReader.getConfigProperty("sauce.platformName"));
             capabilities.setCapability("sauce:options", sauceOptions);
+            capabilities.setCapability("name", scenario.getName());
+
 
             try {
                 // here we are initializing the WebDriver to a Remote driver and passing the URL to the Selenium Grid hub
             driver = new RemoteWebDriver(new URL(ConfigReader.getConfigProperty("sauce.urlWest")), capabilities);
+                ((JavascriptExecutor)driver).executeScript("sauce:job-name" + scenario.getName());
             } catch (Exception e){
                 e.printStackTrace();
             }
