@@ -1,10 +1,21 @@
-Feature: Test Sign Up functionality
+Feature: sign up feature
 
-  Scenario: verify the user is able to sign up with fake credentials
-    Given the user has access to the Sign Up link
-    And the user clicks on the sign up link
-    When the user fills out the initial registration form
-    And clicks on the Next button
-    And fills out the second registration form and enables the Terms and Conditions checkbox
-    And clicks on the Register button
-    Then the user can see the confirmation message
+  Background:
+    Given user navigates to Digital Bank Login Page
+    And and Sign Up Here link is present
+
+  Scenario: verify user is able to access sign up page
+    When user clicks on the Sign Up Here link
+    Then user is on sign up page and the bank logo is present
+
+  Scenario: verify the user is able to complete the first part of the sign up process
+    When user fill out all the input fields
+
+      | title | firstName | lastName | gender | dateOfBirth | SSN | email | password | confirmPassword |
+      | Mr. | Timothy  | Cooper | M |  | SSN | email | password | confirmPassword |
+      | title | firstName | lastName | gender | dateOfBirth | SSN | email | password | confirmPassword |
+      | title | firstName | lastName | gender | dateOfBirth | SSN | email | password | confirmPassword |
+
+    And clicks Next button
+    Then user is
+

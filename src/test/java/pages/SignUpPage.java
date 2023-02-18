@@ -7,8 +7,6 @@ import org.openqa.selenium.support.FindBy;
 
 public class SignUpPage extends BasePage{
 
-    Faker faker = new Faker();
-
     @FindBy (xpath = "//*[text()=' Sign Up Here']")
     WebElement signUpLink;
 

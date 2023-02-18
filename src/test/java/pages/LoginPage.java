@@ -1,5 +1,6 @@
 package pages;
 
+import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import utilities.ConfigReader;
@@ -42,4 +43,5 @@ public class LoginPage extends BasePage{
     public void enableRememberMeBtn(){
         rememberMeBtn.click();
     }
+
 }

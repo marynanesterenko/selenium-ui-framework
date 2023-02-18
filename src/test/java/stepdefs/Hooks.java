@@ -3,6 +3,7 @@ package stepdefs;
 import io.cucumber.java.Before;
 import io.cucumber.java.After;
 import io.cucumber.java.Scenario;
+import utilities.CommonMethods;
 import utilities.ConfigReader;
 import utilities.DriverUtilities;
 
@@ -17,6 +18,10 @@ public class Hooks {
 
     @After
     public void tearDown(Scenario scenario){
+
+        scenario.attach(CommonMethods.takeScreenshot(), "image/png", scenario.getName());
+        CommonMethods.takeScreenshot();
+
         DriverUtilities.quitDriver(scenario);
     }
 }

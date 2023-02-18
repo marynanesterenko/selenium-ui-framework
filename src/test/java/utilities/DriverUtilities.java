@@ -1,7 +1,6 @@
 package utilities;
 
 import io.cucumber.java.Scenario;
-import io.cucumber.java.et.Ja;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.MutableCapabilities;
